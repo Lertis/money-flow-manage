@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        <div>
+          <input type="text" [(ngModel)]="userName">
+          <input type="email" [(ngModel)]="userEmail">
+          <input type="password" [(ngModel)]="userPassword">
+        </div>
+        <div>
+          <button (click)="registration()">Registration</button>
+        </div>
+      </div>
+      <div>
+        <p>Already have an acoount?</p>
+        <button (click)="goLoginPage()">Sign In</button>
+      </div>
+</ion-content>

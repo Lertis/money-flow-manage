@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div>
+      <div>
+      <input type="email" [(ngModel)]="userEmail">
+      <input type="password" [(ngModel)]="userPassword">
+    </div>
+    <div>
+      <button (click)="login()">login</button>
+    </div>
+  </div>
+  <div>
+    <p>Doesn't have an account? </p> 
+    <button (click)="goRegPage()">Sign Up</button>
+  </div>
+
+</ion-content>
