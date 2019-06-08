@@ -49,7 +49,7 @@ export class RegistrationPage implements OnInit {
         })
           .then(() => {
             console.log('Successfully updated user displayName !');
-            this.router.navigate(['checks']);
+            this.router.navigate(['checks'], { replaceUrl: true });
           })
           .catch((error) => {
             console.log('Error while updating profile');

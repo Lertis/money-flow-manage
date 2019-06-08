@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
       console.log(successLogin);
       localStorage.setItem('userEmail', user.userEmail);
       localStorage.setItem('userPassword', user.userPassword);
-      this.router.navigate(['checks']);
+      this.router.navigate(['checks'], { replaceUrl: true });
     })
     .catch(async (error) => {
       const toast = await this.toastCntl.create({
