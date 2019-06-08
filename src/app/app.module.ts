@@ -9,18 +9,33 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestore } from 'angularfire2/firestore';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAiJO92J23_BtDDCxDfdXvtY2MQpZw-Hyc",
+  authDomain: "money-flow-manage.firebaseapp.com",
+  databaseURL: "https://money-flow-manage.firebaseio.com",
+  projectId: "money-flow-manage",
+  storageBucket: "money-flow-manage.appspot.com",
+  messagingSenderId: "478903223279",
+  appId: "1:478903223279:web:51780a04a1c56e3d"
+}
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AngularFirestore
   ],
   bootstrap: [AppComponent]
 })
