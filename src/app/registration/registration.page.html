@@ -5,18 +5,32 @@
 </ion-header>
 
 <ion-content>
-    <div>
-        <div>
-          <input type="text" [(ngModel)]="userName">
-          <input type="email" [(ngModel)]="userEmail">
-          <input type="password" [(ngModel)]="userPassword">
-        </div>
-        <div>
-          <button (click)="registration()">Registration</button>
-        </div>
+  <div class="form-container-flex">
+    <form [formGroup]="regForm" novalidate>
+
+      <div class="mat-dialog-content inside-container-flex" mat-dialog-content>
+        <mat-form-field class="md-block">
+          <input [formControl]="regForm.controls['userName']" [(ngModel)]="regUser.userName" matInput name='userName' mat-autofocus
+            placeholder="User Name" type="text" />
+        </mat-form-field>
+
+        <mat-form-field class="md-block">
+          <input [formControl]="regForm.controls['userEmail']" [(ngModel)]="regUser.userEmail" matInput name='userEmail' mat-autofocus
+            placeholder="User Email" type="email" />
+        </mat-form-field>
+        <mat-form-field class="md-block">
+          <input [formControl]="regForm.controls['userPassword']" [(ngModel)]="regUser.userPassword" matInput name='userPassword' mat-autofocus
+            placeholder="User Password" type="password" />
+        </mat-form-field>
       </div>
-      <div>
-        <p>Already have an acoount?</p>
-        <button (click)="goLoginPage()">Sign In</button>
-      </div>
+
+      <mat-dialog-actions layout="row" class="form-container-flex form-container-grid">
+        <button [disabled]="regForm.invalid" mat-button class="md-raised md-primary inside-container-flex" (click)="registration(regUser)">Registration</button>
+        <br>
+        <div class="inside-container-flex">
+          <a (click)="goLoginPage()">Do you have an account?</a>
+        </div>
+      </mat-dialog-actions>
+    </form>
+  </div>
 </ion-content>

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegistratonService } from '../services/auth/registraton.service';
 import * as firebase from 'firebase';
+import { FormGroup, FormControl } from '@angular/forms';
+import { IUser } from '../models/user.interface';
+
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registration',
@@ -10,38 +14,56 @@ import * as firebase from 'firebase';
 })
 export class RegistrationPage implements OnInit {
 
-  userName;
-  userEmail
-  userPassword;
+  regForm: FormGroup;
+  regUser: IUser = {
+    userName: '',
+    userEmail: '',
+    userPassword: ''
+  }
 
-  constructor(private regService: RegistratonService, private router: Router) { }
+  constructor(
+    private regService: RegistratonService,
+    private router: Router,
+    private toastCntl: ToastController) {
+    this.regForm = new FormGroup({
+      'userName': new FormControl(),
+      'userEmail': new FormControl(),
+      'userPassword': new FormControl()
+    })
+  }
 
   ngOnInit() {
   }
 
-  registration() {
-    this.regService.registartion(this.userEmail, this.userPassword)
+  registration(regUser: IUser) {
+    this.regService.registartion(regUser.userEmail, regUser.userPassword)
       .then((successReg) => {
         console.log(successReg);
-        localStorage.setItem('userEmail', this.userEmail);
-        localStorage.setItem('userPassword', this.userPassword);
+        localStorage.setItem('userEmail', regUser.userEmail);
+        localStorage.setItem('userPassword', regUser.userPassword);
 
 
         var user = firebase.auth().currentUser;
         user.updateProfile({
-          displayName: this.userName
+          displayName: regUser.userName
         })
           .then(() => {
             console.log('Successfully updated user displayName !');
-            this.router.navigate(['home']);
+            this.router.navigate(['checks']);
           })
           .catch((error) => {
             console.log('Error while updating profile');
           })
 
       })
-      .catch((error) => {
-        console.log('Error while reg process: ', error);
+      .catch(async (error) => {
+          const toast = await this.toastCntl.create({
+            duration: 2000,
+            header: 'Error: ' + error.code,
+            position: 'bottom',
+            message: 'Details: ' + error.message
+          });
+          toast.present();
       })
   }
 

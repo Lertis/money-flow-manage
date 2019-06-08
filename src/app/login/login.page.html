@@ -5,19 +5,28 @@
 </ion-header>
 
 <ion-content>
+  <div class="form-container-flex">
+    <form [formGroup]="loginForm" novalidate>
 
-  <div>
-      <div>
-      <input type="email" [(ngModel)]="userEmail">
-      <input type="password" [(ngModel)]="userPassword">
-    </div>
-    <div>
-      <button (click)="login()">login</button>
-    </div>
-  </div>
-  <div>
-    <p>Doesn't have an account? </p> 
-    <button (click)="goRegPage()">Sign Up</button>
+      <div class="mat-dialog-content inside-container-flex" mat-dialog-content>
+        <mat-form-field class="md-block">
+          <input [formControl]="loginForm.controls['userEmail']" [(ngModel)]="loginUser.userEmail" matInput name='userEmail' mat-autofocus
+            placeholder="User Email" type="email" />
+        </mat-form-field>
+        <mat-form-field class="md-block">
+          <input [formControl]="loginForm.controls['userPassword']" [(ngModel)]="loginUser.userPassword" matInput name='userPassword'
+            mat-autofocus placeholder="User Password" type="password" />
+        </mat-form-field>
+      </div>
+
+      <mat-dialog-actions layout="row" class="form-container-flex form-container-grid">
+        <button [disabled]="loginForm.invalid" mat-button class="md-raised md-primary inside-container-flex" (click)="login(loginUser)">Login</button>
+        <br>
+        <div  class="inside-container-flex">
+            <a (click)="goRegPage()">Doesn't have an account? </a>
+        </div>
+      </mat-dialog-actions>
+    </form>
   </div>
 
 </ion-content>
