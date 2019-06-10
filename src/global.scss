@@ -25,6 +25,22 @@ div {
     justify-content: center;
 }
 
+.profile-manage-buttons {
+    display: grid;
+    justify-content: center;
+    button {
+        margin: .4em;
+    }
+}
+
+.warning-button {
+    background-color: #ff817b !important;
+}
+
+.update-button {
+    background-color: #a7c9fc !important;
+}
+
 .inside-container-flex {
     flex: 1;
 }

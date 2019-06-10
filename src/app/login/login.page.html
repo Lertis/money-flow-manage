@@ -20,7 +20,7 @@
       </div>
 
       <mat-dialog-actions layout="row" class="form-container-flex form-container-grid">
-        <button [disabled]="loginForm.invalid" mat-button class="md-raised md-primary inside-container-flex" (click)="login(loginUser)">Login</button>
+        <button [disabled]="loginForm.invalid" mat-button class="md-raised md-primary inside-container-flex" (click)="loginUserSubmit(loginUser)">Login</button>
         <br>
         <div  class="inside-container-flex">
             <a (click)="goRegPage()">Doesn't have an account? </a>

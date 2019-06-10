@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="userState; then userPresent; else userNotPresent">
+  </ng-container>
+
+  <ng-template #userPresent>
+    <ion-card>
+      <ion-img src="/assets/shapes.svg"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>E-mail: {{userState.email}}</ion-card-subtitle>
+        <ion-card-title>Name: {{userState.displayName}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>INFO INFO INFO INFO INFO INFO INFO INFO INFO INFO</p>
+      </ion-card-content>
+    </ion-card>
+    <div class="profile-manage-buttons">
+      <button mat-flat-button class="update-button" (click)="updateAccount()">Update account</button>
+      <button mat-flat-button class="warning-button" (click)="deleteAccount()">Delete account</button>
+      <button mat-flat-button class="warning-button" (click)="signOut()">Sign Out</button>
+    </div>
+  </ng-template>
+  <ng-template #userNotPresent>
+    <div class="flex-container">
+      <span class="flex-item">
+        <ion-spinner name="dots"></ion-spinner>
+      </span>
+    </div>
+  </ng-template>
+</ion-content>

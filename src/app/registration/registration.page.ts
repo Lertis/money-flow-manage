@@ -42,7 +42,6 @@ export class RegistrationPage implements OnInit {
         localStorage.setItem('userEmail', regUser.userEmail);
         localStorage.setItem('userPassword', regUser.userPassword);
 
-
         var user = firebase.auth().currentUser;
         user.updateProfile({
           displayName: regUser.userName
@@ -55,15 +54,17 @@ export class RegistrationPage implements OnInit {
             console.log('Error while updating profile');
           })
 
+        this.regService.addUserToFirestore(regUser);
+
       })
       .catch(async (error) => {
-          const toast = await this.toastCntl.create({
-            duration: 2000,
-            header: 'Error: ' + error.code,
-            position: 'bottom',
-            message: 'Details: ' + error.message
-          });
-          toast.present();
+        const toast = await this.toastCntl.create({
+          duration: 2000,
+          header: 'Error: ' + error.code,
+          position: 'bottom',
+          message: 'Details: ' + error.message
+        });
+        toast.present();
       })
   }
 

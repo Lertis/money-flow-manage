@@ -7,11 +7,17 @@ import { IonicModule } from '@ionic/angular';
 
 import { ProfilePage } from './profile.page';
 import { AngularMaterialModule } from '../angular.material.module';
+import { ProfileCardComponent } from './profile-card/profile-card.component';
+import { ProfileUpdateComponent } from './profile-update/profile-update.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProfilePage
+    component: ProfilePage,
+    children: [
+      { path: 'card', component: ProfileCardComponent },
+      { path: 'update', component: ProfileUpdateComponent}
+    ]
   }
 ];
 
@@ -23,6 +29,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     AngularMaterialModule
   ],
-  declarations: [ProfilePage]
+  declarations: [ProfilePage, ProfileCardComponent, ProfileUpdateComponent]
 })
 export class ProfilePageModule {}
