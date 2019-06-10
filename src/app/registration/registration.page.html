@@ -9,16 +9,16 @@
     <form [formGroup]="regForm" novalidate>
 
       <div class="mat-dialog-content inside-container-flex" mat-dialog-content>
-        <mat-form-field class="md-block">
+        <mat-form-field class="md-block" appearance="outline">
           <input [formControl]="regForm.controls['userName']" [(ngModel)]="regUser.userName" matInput name='userName' mat-autofocus
             placeholder="User Name" type="text" />
         </mat-form-field>
 
-        <mat-form-field class="md-block">
+        <mat-form-field class="md-block" appearance="outline">
           <input [formControl]="regForm.controls['userEmail']" [(ngModel)]="regUser.userEmail" matInput name='userEmail' mat-autofocus
             placeholder="User Email" type="email" />
         </mat-form-field>
-        <mat-form-field class="md-block">
+        <mat-form-field class="md-block" appearance="outline">
           <input [formControl]="regForm.controls['userPassword']" [(ngModel)]="regUser.userPassword" matInput name='userPassword' mat-autofocus
             placeholder="User Password" type="password" />
         </mat-form-field>
