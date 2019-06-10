@@ -5,12 +5,21 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
+
+import { ChartModule } from 'primeng/chart';
+
 import { StatisticsPage } from './statistics.page';
+import { ChartsComponent } from './charts/charts.component';
+import { ArrivalExpensesComponent } from './arrival-expenses/arrival-expenses.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: StatisticsPage
+    component: StatisticsPage,
+    children: [
+      { path: 'cash', component: ArrivalExpensesComponent },
+      { path: 'charts', component: ChartsComponent}
+    ]
   }
 ];
 
@@ -19,8 +28,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ChartModule
   ],
-  declarations: [StatisticsPage]
+  declarations: [StatisticsPage, ArrivalExpensesComponent, ChartsComponent]
 })
 export class StatisticsPageModule {}

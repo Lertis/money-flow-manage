@@ -68,8 +68,4 @@ export class ProfileCardComponent implements OnInit {
     toast.present();
   }
 
-  
-  updateAccount() {
-    this.router.navigate(['profile', 'update']);
-  }
 }

@@ -23,7 +23,7 @@ export class AppComponent {
     },
     {
       title: 'Statistics',
-      url: '/statistics',
+      url: '/statistics/cash',
       icon: 'pulse'
     }
   ];
