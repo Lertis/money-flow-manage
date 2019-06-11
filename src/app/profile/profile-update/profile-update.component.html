@@ -4,7 +4,6 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      <button (click)="updateProfile()">click</button>
       Profile
     </ion-title>
   </ion-toolbar>
@@ -49,8 +48,9 @@
           </ion-card-content>
           <button mat-icon-button (click)="takePhoto()" style="margin: 1em 1em 1em -1.1em;">
               <mat-icon>camera_alt</mat-icon>
-            </button>
+          </button>
         </ion-card>
+        <button mat--button (click)="uploadPhoto()">Change Photo</button>
 
 
         <!--         <ion-card>
