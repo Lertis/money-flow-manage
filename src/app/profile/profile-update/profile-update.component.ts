@@ -9,6 +9,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx'
 import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
 import { ModalController } from '@ionic/angular';
+
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-profile-update',
   templateUrl: './profile-update.component.html',
@@ -23,6 +26,7 @@ export class ProfileUpdateComponent implements OnInit {
   photoToFireStore: any;
 
   selectedSegment = 'const';
+  imageDownloadURl: string = '';
 
   imgSource: any;
   imgTitle = '';
@@ -86,6 +90,43 @@ export class ProfileUpdateComponent implements OnInit {
     });
 
     return await modal.present();
+  }
+
+  uploadPhoto(){ 
+    let storageRef = firebase.storage().ref();
+    // Create a timestamp as filename
+    const filename = Math.floor(Date.now() / 1000);
+
+    // Create a reference to 'images/todays-date.jpg'
+    const imageRef = storageRef.child(`images/${filename}.jpg`);
+
+    imageRef.putString(this.photoToFireStore, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
+      snapshot.ref.getDownloadURL()
+        .then(success => {
+          this.imageDownloadURl = success
+          console.log(success)
+        })
+        .catch(error => console.log(error))
+    });
+  }
+
+  updateProfile() {
+      var userRef = this.afs.collection('usersMoneyFlow').doc('c1ea4345-45b4-59e8-b9b7-2c1691644200').ref;
+      // Firestore transaction to update data
+      // https://firebase.google.com/docs/firestore/manage-data/transactions
+      this.afs.firestore.runTransaction((t) => {
+        return t.get(userRef)
+          .then(success => {
+            let dataSnapshot = success.data() as IUser
+            dataSnapshot.userPhoto = this.imageDownloadURl;
+            t.update(userRef, dataSnapshot)
+          })
+          .catch(error => console.log(error))
+      }).then(function () {
+        console.log("Transaction successfully committed!");
+      }).catch(function (error) {
+        console.log("Transaction failed: ", error);
+      });
   }
 
 }
