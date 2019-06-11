@@ -39,16 +39,19 @@
             <ion-card-title>Profile Photo</ion-card-title>
             <ion-card-subtitle>{{user.userPhoto? user.userPhoto : 'No photo' }}</ion-card-subtitle>
           </ion-card-header>
-          <ion-card-content *ngIf="photoToFireStore">
-            <ion-img src="{{photoToFireStore}}"></ion-img>
+          <ion-card-content *ngIf="photoToFireStore" class="image-profile-update">
+            <p>Click to zoom!</p>
+            <ion-img src="{{photoToFireStore}}" class="ipu" (click)="viewImage(photoToFireStore, imgTitle, imgDescription)"></ion-img>
           </ion-card-content>
           <ion-item>
-              <ion-button slot="end" (click)="takePhoto()"><ion-icon name="contract"></ion-icon></ion-button>
+            <ion-button slot="end" (click)="takePhoto()">
+              <ion-icon name="contract"></ion-icon>
+            </ion-button>
           </ion-item>
         </ion-card>
         <br>
 
-<!--         <ion-card>
+        <!--         <ion-card>
           <ion-segment [(ngModel)]="selectedSegment">
             <ion-segment-button checked value="const">
               <ion-label>Const categories</ion-label>

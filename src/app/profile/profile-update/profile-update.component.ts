@@ -7,6 +7,8 @@ import { IUserCategories } from '../../models/user.categories';
 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx'
+import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-profile-update',
   templateUrl: './profile-update.component.html',
@@ -22,17 +24,15 @@ export class ProfileUpdateComponent implements OnInit {
 
   selectedSegment = 'const';
 
-  constructor(private afs: AngularFirestore, private camera: Camera, private backgroundMode: BackgroundMode) {
-/*     let userEmail = localStorage.getItem('userEmail');
-    this.afs.collection('usersMoneyFlow', ref => ref.where('userEmail', '==', userEmail))
-      .valueChanges().subscribe((users: IUser[]) => {
-        users.forEach((user: IUser) => {
-          this.user = user;
-          timer(2000).subscribe(() => {
-            this.loadingUser = true;
-          })
-        });
-      }) */
+  imgSource: any;
+  imgTitle = 'Silhoutte';
+  imgDescription = 'Photo by Mayur Gala on Unsplash';
+
+  constructor(
+    private afs: AngularFirestore,
+    private camera: Camera,
+    private backgroundMode: BackgroundMode,
+    public modalController: ModalController) {
    }
 
   ngOnInit() {
@@ -70,6 +70,22 @@ export class ProfileUpdateComponent implements OnInit {
     });
 
     this.backgroundMode.disable();
+  }
+
+  async viewImage(src: string, title: string = '', description: string = '') {
+    const modal = await this.modalController.create({
+      component: ImageViewerComponent,
+      componentProps: {
+        imgSource: src,
+        imgTitle: title,
+        imgDescription: description
+      },
+      cssClass: 'modal-fullscreen',
+      keyboardClose: true,
+      showBackdrop: true
+    });
+
+    return await modal.present();
   }
 
 }

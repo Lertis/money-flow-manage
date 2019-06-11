@@ -9,6 +9,9 @@ import { ProfilePage } from './profile.page';
 import { AngularMaterialModule } from '../angular.material.module';
 import { ProfileCardComponent } from './profile-card/profile-card.component';
 import { ProfileUpdateComponent } from './profile-update/profile-update.component';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
+import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 
 const routes: Routes = [
   {
@@ -29,6 +32,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     AngularMaterialModule
   ],
-  declarations: [ProfilePage, ProfileCardComponent, ProfileUpdateComponent]
+  declarations: [ProfilePage, ProfileCardComponent, ProfileUpdateComponent, ImageViewerComponent],
+  entryComponents: [ImageViewerComponent],
+  providers: [Camera, BackgroundMode]
 })
 export class ProfilePageModule {}
