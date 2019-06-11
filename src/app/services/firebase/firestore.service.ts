@@ -25,4 +25,16 @@ export class FirestoreService {
     .collection('checks').doc(check.checkId)
     .set(check)
   }
+
+  getUserId(): string {
+    let userEmail = localStorage.getItem('userEmail');
+    let userID = '';
+    this.afs.collection('usersMoneyFlow', ref => ref.where('userEmail', '==', userEmail))
+    .valueChanges().subscribe((users: IUser[]) => {
+      users.forEach((user: IUser) => {
+        userID = user.userId;
+      });
+    })
+    return userID;
+  }
 }

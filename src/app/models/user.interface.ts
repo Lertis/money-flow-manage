@@ -5,6 +5,6 @@ export interface IUser {
     userName?: string;
     userEmail: string;
     userPassword: string;
-    userIcon?: any;
+    userPhoto?: any;
     categories?: IUserCategories[];
 }

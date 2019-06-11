@@ -17,6 +17,12 @@
     justify-content: center;
 }
 
+.update-container-cards {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .profile-manage-buttons {
     display: grid;
     justify-content: center;

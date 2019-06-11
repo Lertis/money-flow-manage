@@ -10,5 +10,46 @@
 </ion-header>
 
 <ion-content>
-
+  <div >
+    <ng-container *ngIf="loadingUser; then loadCard; else spinner"></ng-container>
+    <ng-template #loadCard>
+      <div class="update-container-cards">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+                <mat-form-field>
+                    <input [(ngModel)]="user.userName" matInput
+                      placeholder="User Name" type="text" />
+                  </mat-form-field>
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+        <br>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+                <mat-form-field>
+                    <input [(ngModel)]="user.userEmail" matInput
+                      placeholder="User Name" type="email" />
+                  </mat-form-field>
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+        <br>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Profile Photo</ion-card-title>
+            <ion-card-subtitle>{{user.userPhoto? user.userPhoto : 'No photo' }}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </div>
+    </ng-template>
+    <ng-template #spinner>
+      <div class="form-container-flex">
+        <span>
+          <ion-spinner name="dots"></ion-spinner>
+        </span>
+      </div>
+    </ng-template>
+  </div>
 </ion-content>
