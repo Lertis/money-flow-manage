@@ -26,6 +26,7 @@ export class ProfileCardComponent implements OnInit {
     const toast = await this.toastController.create({
       header: 'Really want to delete account?',
       position: 'bottom',
+      cssClass: "text-center-toast",
       buttons: [
         {
           side: 'start',
@@ -51,6 +52,7 @@ export class ProfileCardComponent implements OnInit {
     const toast = await this.toastController.create({
       header: 'Really want to sign out?',
       position: 'bottom',
+      cssClass: "text-center-toast",
       buttons: [
         {
           side: 'start',

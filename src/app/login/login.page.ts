@@ -37,6 +37,7 @@ export class LoginPage implements OnInit {
       duration: 1500,
       header: 'Checking data for auto logging..',
       position: 'bottom',
+      cssClass: "text-center-toast"
     });
     toastAutoLogin.present()
       .then((success) => {
@@ -51,7 +52,8 @@ export class LoginPage implements OnInit {
                 duration: 2000,
                 header: 'Error: ' + error.code,
                 position: 'bottom',
-                message: 'Details: ' + error.message
+                message: 'Details: ' + error.message,
+                cssClass: "text-center-toast"
               });
               toast.present();
             });
@@ -75,7 +77,8 @@ export class LoginPage implements OnInit {
           duration: 2000,
           header: 'Error: ' + error.code,
           position: 'bottom',
-          message: 'Details: ' + error.message
+          message: 'Details: ' + error.message,
+          cssClass: "text-center-toast"
         });
         toast.present();
       });

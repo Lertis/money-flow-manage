@@ -62,7 +62,8 @@ export class RegistrationPage implements OnInit {
           duration: 2000,
           header: 'Error: ' + error.code,
           position: 'bottom',
-          message: 'Details: ' + error.message
+          message: 'Details: ' + error.message,
+          cssClass: "text-center-toast"
         });
         toast.present();
       })
