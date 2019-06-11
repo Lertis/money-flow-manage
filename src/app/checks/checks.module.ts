@@ -7,11 +7,17 @@ import { IonicModule } from '@ionic/angular';
 
 import { ChecksPage } from './checks.page';
 import { AngularMaterialModule } from '../angular.material.module';
+import { AddCheckComponent } from './add-check/add-check.component';
+import { ChecksListComponent } from './checks-list/checks-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ChecksPage
+    component: ChecksPage,
+    children: [
+      { path: 'new-check', component: AddCheckComponent },
+      { path: 'check-list', component: ChecksListComponent}
+    ]
   }
 ];
 
@@ -23,6 +29,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     AngularMaterialModule
   ],
-  declarations: [ChecksPage]
+  declarations: [ChecksPage, AddCheckComponent, ChecksListComponent]
 })
 export class ChecksPageModule {}

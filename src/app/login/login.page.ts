@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
           this.loginService.login(localStorage.getItem('userEmail'), localStorage.getItem('userPassword'))
             .then((successLogin) => {
               console.log(successLogin);
-              this.router.navigate(['checks'], { replaceUrl: true });
+              this.router.navigate(['checks', 'new-check'], { replaceUrl: true });
             })
             .catch(async (error) => {
               const toast = await this.toastCntl.create({
@@ -68,7 +68,7 @@ export class LoginPage implements OnInit {
         console.log(successLogin);
         localStorage.setItem('userEmail', user.userEmail);
         localStorage.setItem('userPassword', user.userPassword);
-        this.router.navigate(['checks'], { replaceUrl: true });
+        this.router.navigate(['checks', 'new-check'], { replaceUrl: true });
       })
       .catch(async (error) => {
         const toast = await this.toastCntl.create({

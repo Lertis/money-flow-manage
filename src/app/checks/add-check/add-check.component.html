@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Checks
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          A new Check
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-label>Category</ion-label>
+        <ion-select placeholder="Category" [(ngModel)]="selectedCategory" (ngModelChange)="selectCategory($event)">
+          <ion-select-option *ngFor="let category of categoriesList" [value]="category.name">{{category.name}}</ion-select-option>
+        </ion-select>
+        <hr>
+        <ion-label>Price for check</ion-label>
+        <mat-form-field class="md-block margin-left-1em">
+          <input [(ngModel)]="priceForCheck" matInput placeholder="Price for Check" type="text" />
+        </mat-form-field>
+        <hr>
+        <ion-label>Description</ion-label>
+        <ion-textarea [(ngModel)]="descriptionForCheck" placeholder="Description for Check"></ion-textarea>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="form-container-flex">
+      <ng-container *ngIf="!addingNewCheck; then fabButton; else spinnerDots"></ng-container>
+      <ng-template #fabButton>
+          <ion-fab horizontal="center" (click)="addNewCheck()">
+              <ion-fab-button>
+                <ion-icon name="add"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+
+      </ng-template>
+      <ng-template #spinnerDots>
+          <div>
+              <span>
+                <ion-spinner name="dots"></ion-spinner>
+              </span>
+            </div>
+      </ng-template>   
+  </div>
+</ion-content>

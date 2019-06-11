@@ -13,7 +13,7 @@ export class AppComponent {
   public appPages = [
     {
       title: 'Checks',
-      url: '/checks',
+      url: '/checks/new-check',
       icon: 'list-box'
     },
     {
