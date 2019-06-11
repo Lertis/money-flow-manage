@@ -10,17 +10,16 @@
 </ion-header>
 
 <ion-content>
-  <div >
+  <div>
     <ng-container *ngIf="loadingUser; then loadCard; else spinner"></ng-container>
     <ng-template #loadCard>
       <div class="update-container-cards">
         <ion-card>
           <ion-card-header>
             <ion-card-title>
-                <mat-form-field>
-                    <input [(ngModel)]="user.userName" matInput
-                      placeholder="User Name" type="text" />
-                  </mat-form-field>
+              <mat-form-field>
+                <input [(ngModel)]="user.userName" matInput placeholder="User Name" type="text" />
+              </mat-form-field>
             </ion-card-title>
           </ion-card-header>
         </ion-card>
@@ -28,10 +27,9 @@
         <ion-card>
           <ion-card-header>
             <ion-card-title>
-                <mat-form-field>
-                    <input [(ngModel)]="user.userEmail" matInput
-                      placeholder="User Name" type="email" />
-                  </mat-form-field>
+              <mat-form-field>
+                <input [(ngModel)]="user.userEmail" matInput placeholder="User Name" type="email" />
+              </mat-form-field>
             </ion-card-title>
           </ion-card-header>
         </ion-card>
@@ -42,7 +40,51 @@
             <ion-card-subtitle>{{user.userPhoto? user.userPhoto : 'No photo' }}</ion-card-subtitle>
           </ion-card-header>
         </ion-card>
+        <br>
+
+<!--         <ion-card>
+          <ion-segment [(ngModel)]="selectedSegment">
+            <ion-segment-button checked value="const">
+              <ion-label>Const categories</ion-label>
+              <ion-icon name="contract"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button checked value="own">
+              <ion-label>Mine categories</ion-label>
+              <ion-icon name="contract"></ion-icon>
+            </ion-segment-button>
+          </ion-segment>
+
+          <ng-container>
+            <div [ngSwitch]="selectedSegment">
+              <div *ngSwitchCase="'const'">
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>
+                        <ion-list *ngFor="let c of constCategoriesNames">
+                            <ion-item>
+                              <ion-label>{{c}}</ion-label>
+                            </ion-item>
+                          </ion-list>
+                    </ion-card-title>
+                  </ion-card-header>
+                </ion-card>
+              </div>
+              <div *ngSwitchCase="'own'">
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>
+                      <mat-form-field>
+                        <input [(ngModel)]="user.userEmail" matInput placeholder="User Name" type="email" />
+                      </mat-form-field>
+                    </ion-card-title>
+                  </ion-card-header>
+                </ion-card>
+              </div>
+            </div>
+          </ng-container>
+        </ion-card> -->
       </div>
+
     </ng-template>
     <ng-template #spinner>
       <div class="form-container-flex">
