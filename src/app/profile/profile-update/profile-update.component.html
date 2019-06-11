@@ -40,7 +40,6 @@
             <ion-card-subtitle>{{user.userPhoto? user.userPhoto : 'No photo' }}</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content *ngIf="photoToFireStore" class="image-profile-update">
-            <p>Click to zoom!</p>
             <ion-img src="{{photoToFireStore}}" class="ipu" (click)="viewImage(photoToFireStore, imgTitle, imgDescription)"></ion-img>
           </ion-card-content>
           <ion-item>
