@@ -35,21 +35,23 @@
           </ion-card-header>
         </ion-card>
         <br>
-        <ion-card>
+        <ion-card style="display: flex">
           <ion-card-header>
-            <ion-card-title>Profile Photo</ion-card-title>
-            <ion-card-subtitle>{{user.userPhoto? user.userPhoto : 'No photo' }}</ion-card-subtitle>
+            <ion-card-title>Change your profile photo</ion-card-title>
+            <ion-card-subtitle class="image-profile-update">
+              <!--               <ion-img [src]="user.userPhoto? user.userPhoto : 'https://powerplants.com.au/wp-content/uploads/2017/04/no-profile-pic.jpg' "
+              class="ipu" style="width: 10em; height: 10em;"
+              (click)="viewImage(photoToFireStore, imgTitle, imgDescription)"></ion-img> -->
+            </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content *ngIf="photoToFireStore" class="image-profile-update">
             <ion-img src="{{photoToFireStore}}" class="ipu" (click)="viewImage(photoToFireStore, imgTitle, imgDescription)"></ion-img>
           </ion-card-content>
-          <ion-item>
-            <ion-button slot="end" (click)="takePhoto()">
-              <ion-icon name="contract"></ion-icon>
-            </ion-button>
-          </ion-item>
+          <button mat-icon-button (click)="takePhoto()" style="margin: 1em 1em 1em -1.1em;">
+              <mat-icon>camera_alt</mat-icon>
+            </button>
         </ion-card>
-        <br>
+
 
         <!--         <ion-card>
           <ion-segment [(ngModel)]="selectedSegment">
