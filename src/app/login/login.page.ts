@@ -44,7 +44,6 @@ export class LoginPage implements OnInit {
         if (this.loginService.isAuthorized()) {
           this.loginService.login(localStorage.getItem('userEmail'), localStorage.getItem('userPassword'))
             .then((successLogin) => {
-              console.log(successLogin);
               this.router.navigate(['checks', 'new-check'], { replaceUrl: true });
             })
             .catch(async (error) => {
