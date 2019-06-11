@@ -25,8 +25,8 @@ export class ProfileUpdateComponent implements OnInit {
   selectedSegment = 'const';
 
   imgSource: any;
-  imgTitle = 'Silhoutte';
-  imgDescription = 'Photo by Mayur Gala on Unsplash';
+  imgTitle = '';
+  imgDescription = '';
 
   constructor(
     private afs: AngularFirestore,
@@ -77,8 +77,8 @@ export class ProfileUpdateComponent implements OnInit {
       component: ImageViewerComponent,
       componentProps: {
         imgSource: src,
-        imgTitle: title,
-        imgDescription: description
+        imgTitle: this.user.userName,
+        imgDescription: this.user.userName
       },
       cssClass: 'modal-fullscreen',
       keyboardClose: true,
