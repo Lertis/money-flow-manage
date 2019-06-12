@@ -6,6 +6,8 @@ import { ICheck } from '../../models/check.interface';
 import { UUID } from 'angular2-uuid';
 import { FirestoreService } from '../../services/firebase/firestore.service';
 import { ToastController } from '@ionic/angular';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { IUser } from '../../models/user.interface';
 
 @Component({
   selector: 'app-add-check',
@@ -21,8 +23,18 @@ export class AddCheckComponent implements OnInit {
 
   categoriesList: IUserCategories[] = [];
 
-  constructor(private firestoreService: FirestoreService, private toastController: ToastController) {
+  constructor(
+    private firestoreService: FirestoreService,
+    private toastController: ToastController,
+    private afs: AngularFirestore) {
     this.categoriesList = constCategories.categoriesList;
+
+    this.afs.collection('usersMoneyFlow', ref => ref.where('userEmail', '==', localStorage.getItem('userEmail')))
+    .valueChanges().subscribe((users: IUser[]) => {
+      users.forEach((each: IUser) => {
+        localStorage.setItem('userId', each.userId);
+      })
+    })
   }
 
   ngOnInit() { }

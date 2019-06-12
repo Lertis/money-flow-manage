@@ -28,6 +28,13 @@ export class LoginPage implements OnInit {
       'userEmail': new FormControl(),
       'userPassword': new FormControl()
     })
+
+    this.afs.collection('usersMoneyFlow', ref => ref.where('userEmail', '==', localStorage.getItem('userEmail'))).valueChanges()
+    .subscribe((users: IUser[]) => {
+      users.forEach((each: IUser) => {
+        localStorage.setItem('userId', each.userId);
+      })
+    })
   }
 
   ngOnInit() {
@@ -46,12 +53,6 @@ export class LoginPage implements OnInit {
         if (this.loginService.isAuthorized()) {
           this.loginService.login(localStorage.getItem('userEmail'), localStorage.getItem('userPassword'))
             .then((successLogin) => {
-              this.afs.collection('usersMoneyFlow', ref => ref.where('userEmail', '==', localStorage.getItem('userEmail'))).valueChanges()
-              .subscribe((users: IUser[]) => {
-                users.forEach((each: IUser) => {
-                  localStorage.setItem('userId', each.userId);
-                })
-              })
               this.router.navigate(['checks', 'new-check'], { replaceUrl: true });
             })
             .catch(async (error) => {
