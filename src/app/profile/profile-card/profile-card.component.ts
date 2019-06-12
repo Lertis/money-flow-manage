@@ -25,6 +25,13 @@ export class ProfileCardComponent implements OnInit {
     this.afAuth.authState.subscribe((user: firebase.User) => {
       this.userState = user;
     })
+
+    this.afs.collection('usersMoneyFlow', ref => ref.where('userEmail', '==', localStorage.getItem('userEmail')))
+    .valueChanges().subscribe((users: IUser[]) => {
+      users.forEach((each: IUser) => {
+        this.userPhotoUrl = each.userPhoto;
+      })
+    })
   }
   ngOnInit() {
   
