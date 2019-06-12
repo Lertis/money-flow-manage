@@ -9,6 +9,84 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <!--<div>
+    <h3>Sort by:</h3>
+    <ion-select placeholder="Sort by:" [(ngModel)]="sortBySelected" (ngModelChange)="sortBy($event)">
+      <ion-select-option *ngFor="let method of methodList" [value]="method.name">{{method.name}}</ion-select-option>
+    </ion-select>
+  </div>
+   <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+  <div class="fixed" scrolly="true" style="max-height: 20em;">
+    <ion-list *ngFor="let data of userCategories">
+      <ion-item>
+        {{data.name}}
+      </ion-item>
+    </ion-list>
+  </div> -->
+
+  <div>
+    <ion-list>
+      <ion-radio-group>
+        <ion-list-header>
+          <ion-label>Sort by</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let m of methodList, let i = index">
+          <ion-label>{{m.name}}</ion-label>
+          <ion-radio slot="start" value="{{m.name}}" (ionSelect)="changeRadioButton($event)"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </div>
+  <div [ngSwitch]="selectedFilterValue">
+    <div *ngSwitchCase="'notSelected'">
+      <div class="form-container-flex">
+        <span>
+          <ion-spinner name="dots"></ion-spinner>
+        </span>
+      </div>
+      <p class="form-container-flex">No filter Selected!</p>
+    </div>
+
+    <div *ngSwitchCase="'Oldest first'">
+      <p>Oldest first</p>
+    </div>
+
+    <div *ngSwitchCase="'Newest first'">
+      <p>Newest first</p>
+    </div>
+
+    <div *ngSwitchCase="'Time'">
+      <p>Time</p>
+    </div>
+
+    <div *ngSwitchCase="'Category'">
+      <p>Category</p>
+    </div>
+
+    <div *ngSwitchDefault>
+      <div class="form-container-flex">
+        <span>
+          <ion-spinner name="dots"></ion-spinner>
+        </span>
+      </div>
+      <p class="form-container-flex">No filter Selected!</p>
+    </div>
+  </div>
+  <!--   <div>
+    <ion-label>User Categories</ion-label>
+    <div class="fixed" scrolly="true" style="max-height: 20em;">
+      <ion-list>
+        <ion-radio-group>
+          <ion-list-header>
+          </ion-list-header>
+          <ion-item *ngFor="let category of userCategories, let i = index">
+            <ion-label>{{category.name}}</ion-label>
+            <ion-radio slot="start" checked="{{i == 0}}" value="{{category.name}}" (ionSelect)="changeRadioButton($event)"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </div>
+  </div> -->
 
 </ion-content>

@@ -1,0 +1,28 @@
+.fixed[scrollx=true], div[scrolly=true] {
+  position: relative;
+  overflow: hidden;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.fixed[scrollx=true] {
+  overflow-x: auto;
+}
+
+.fixed[scrolly=true] {
+  overflow-y: auto;
+}
+
+ion-col {
+  border: 1px #ccc solid;
+  border-radius: .5em;
+}
+
+/* Inner List */
+.first-list ion-list[lines="none"] ion-item {
+  --border-width: 0;
+  /* the following is not needed but just to be verbose */
+  --inner-border-width: 0;
+}
