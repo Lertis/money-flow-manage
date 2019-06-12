@@ -43,35 +43,46 @@ export class AddCheckComponent implements OnInit {
     console.log(category);
   }
 
-  addNewCheck() {
-    this.addingNewCheck = true;
-    let uuid = UUID.UUID();
-
-    let finalCheckToAdd: ICheck = {
-      addedAt: new Date(),
-      addedPhoto: null,
-      category: this.selectedCategory,
-      checkId: uuid,
-      description: this.descriptionForCheck,
-      summary: this.priceForCheck
-    }
-
-    this.firestoreService.addCheckToFirestore(finalCheckToAdd)
-      .then(() => {
-        timer(1500).subscribe(async () => {
-          const toast = await this.toastController.create({
-            duration: 20000,
-            header: 'A new check has been successfully added',
-            position: 'bottom',
-            cssClass: "text-center-toast"
-          });
-          toast.present();
+  async addNewCheck() {
+    if (this.priceForCheck || this.selectedCategory) {
+      this.addingNewCheck = true;
+      let uuid = UUID.UUID();
+  
+      let finalCheckToAdd: ICheck = {
+        addedAt: new Date(),
+        addedPhoto: null,
+        category: this.selectedCategory,
+        checkId: uuid,
+        description: this.descriptionForCheck,
+        summary: this.priceForCheck
+      }
+  
+      this.firestoreService.addCheckToFirestore(finalCheckToAdd)
+        .then(() => {
+          timer(1500).subscribe(async () => {
+            const toast = await this.toastController.create({
+              duration: 2000,
+              header: 'A new check has been successfully added',
+              position: 'bottom',
+              cssClass: "text-center-toast"
+            });
+            toast.present();
+            this.addingNewCheck = false;
+          })
+        })
+        .catch((error) => {
+          console.log('Error when adding to Firestore:', error)
           this.addingNewCheck = false;
         })
-      })
-      .catch((error) => {
-        console.log('Error when adding to Firestore:', error)
-        this.addingNewCheck = false;
-      })
+    } else {
+      const toastFillFields = await this.toastController.create({
+        duration: 4000,
+        header: 'Fields category and price are required',
+        position: 'bottom',
+        cssClass: "text-center-toast"
+      });
+      toastFillFields.present();
+    }
+    
   }
 }
