@@ -21,6 +21,11 @@ export class ProfileCategoriesComponent implements OnInit {
 
   allUserCategories = [];
 
+  items = [
+    {name: 'ONE'},
+    {name: 'TWO'}
+  ]
+
   constructor(private afs: AngularFirestore) {
   }
 
@@ -34,6 +39,14 @@ export class ProfileCategoriesComponent implements OnInit {
       // can be deleted === added by user
 
     })
+  }
+
+  updateCategory(ctg) {
+
+  }
+
+  deleteCategory(ctg) {
+
   }
 
 }
