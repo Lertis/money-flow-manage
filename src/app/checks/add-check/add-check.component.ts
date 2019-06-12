@@ -49,12 +49,12 @@ export class AddCheckComponent implements OnInit {
       let uuid = UUID.UUID();
   
       let finalCheckToAdd: ICheck = {
-        addedAt: new Date(),
+        addedAt: new Date()? new Date() : null,
         addedPhoto: null,
-        category: this.selectedCategory,
+        category: this.selectedCategory? this.selectedCategory : null,
         checkId: uuid,
-        description: this.descriptionForCheck,
-        summary: this.priceForCheck
+        description: this.descriptionForCheck ? this.descriptionForCheck : null,
+        summary: this.priceForCheck ? this.priceForCheck : null
       }
   
       this.firestoreService.addCheckToFirestore(finalCheckToAdd)

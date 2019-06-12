@@ -3,6 +3,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { IUser } from '../../models/user.interface';
 import { timer } from 'rxjs';
 import { ICheck } from '../../models/check.interface';
+import { IUserCategories } from '../../models/user.categories';
 
 @Component({
   selector: 'app-checks-list',
@@ -18,6 +19,8 @@ export class ChecksListComponent implements OnInit {
   searchTerm: any = "";
 
   selectedFilterValue = "notSelected";
+
+  selectedCategoryForFilter = '';
 
   methodList = [
     { name: 'Oldest first' },
@@ -54,9 +57,9 @@ export class ChecksListComponent implements OnInit {
       console.log('Category: ', this.filteredOrSorted = this.userChecks.filter((data) => data.category === 'Домашні улюбленці'));
     })  */
 
-    timer(2000).subscribe(() => {
+/*     timer(2000).subscribe(() => {
       console.log(this.filteredOrSorted = this.userChecks.filter((data) => data.category === 'Домашні улюбленці'));
-    }) 
+    })  */
   }
 
   ionViewDidLoad() {
@@ -85,6 +88,11 @@ export class ChecksListComponent implements OnInit {
 
   changeRadioButtonInCategories($event) {
     console.log($event)
+    this.selectedCategoryForFilter = $event.detail.value;
+  }
+
+  filterChecksByCategory() {
+  console.log(this.userChecks.filter((check) => check.category === this.selectedCategoryForFilter));
   }
 
 }

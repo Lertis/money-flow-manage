@@ -50,11 +50,11 @@
 
     <div *ngSwitchCase="'Oldest first'">
       <ng-template [ngIf]="spinOldest" [ngIfElse]="showFirstOldest">
-          <div  class="form-container-flex">
-              <span>
-                <ion-spinner name="dots"></ion-spinner>
-              </span>
-            </div>
+        <div class="form-container-flex">
+          <span>
+            <ion-spinner name="dots"></ion-spinner>
+          </span>
+        </div>
       </ng-template>
       <ng-template #showFirstOldest>
         <p>there will be sorted list</p>
@@ -62,29 +62,29 @@
     </div>
 
     <div *ngSwitchCase="'Newest first'">
-        <ng-template [ngIf]="spinNewest" [ngIfElse]="showFirstNewest">
-            <div  class="form-container-flex">
-                <span>
-                  <ion-spinner name="dots"></ion-spinner>
-                </span>
-              </div>
-        </ng-template>
-        <ng-template #showFirstNewest>
-          <p>there will be sorted list</p>
-        </ng-template>
+      <ng-template [ngIf]="spinNewest" [ngIfElse]="showFirstNewest">
+        <div class="form-container-flex">
+          <span>
+            <ion-spinner name="dots"></ion-spinner>
+          </span>
+        </div>
+      </ng-template>
+      <ng-template #showFirstNewest>
+        <p>there will be sorted list</p>
+      </ng-template>
     </div>
 
     <div *ngSwitchCase="'Time'">
-        <ng-template [ngIf]="spinTime" [ngIfElse]="showTime">
-            <div  class="form-container-flex">
-                <span>
-                  <ion-spinner name="dots"></ion-spinner>
-                </span>
-              </div>
-        </ng-template>
-        <ng-template #showTime>
-          <p>there will be sorted list</p>
-        </ng-template>
+      <ng-template [ngIf]="spinTime" [ngIfElse]="showTime">
+        <div class="form-container-flex">
+          <span>
+            <ion-spinner name="dots"></ion-spinner>
+          </span>
+        </div>
+      </ng-template>
+      <ng-template #showTime>
+        <p>there will be sorted list</p>
+      </ng-template>
     </div>
 
     <div *ngSwitchCase="'Category'">
@@ -99,6 +99,9 @@
             </ion-radio-group>
           </ion-list>
         </div>
+      </div>
+      <div>
+        <button mat-button (click)="filterChecksByCategory()">Show Checks</button>
       </div>
     </div>
 
