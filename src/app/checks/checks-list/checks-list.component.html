@@ -49,19 +49,60 @@
     </div>
 
     <div *ngSwitchCase="'Oldest first'">
-      <p>Oldest first</p>
+      <ng-template [ngIf]="spinOldest" [ngIfElse]="showFirstOldest">
+          <div  class="form-container-flex">
+              <span>
+                <ion-spinner name="dots"></ion-spinner>
+              </span>
+            </div>
+      </ng-template>
+      <ng-template #showFirstOldest>
+        <p>there will be sorted list</p>
+      </ng-template>
     </div>
 
     <div *ngSwitchCase="'Newest first'">
-      <p>Newest first</p>
+        <ng-template [ngIf]="spinNewest" [ngIfElse]="showFirstNewest">
+            <div  class="form-container-flex">
+                <span>
+                  <ion-spinner name="dots"></ion-spinner>
+                </span>
+              </div>
+        </ng-template>
+        <ng-template #showFirstNewest>
+          <p>there will be sorted list</p>
+        </ng-template>
     </div>
 
     <div *ngSwitchCase="'Time'">
-      <p>Time</p>
+        <ng-template [ngIf]="spinTime" [ngIfElse]="showTime">
+            <div  class="form-container-flex">
+                <span>
+                  <ion-spinner name="dots"></ion-spinner>
+                </span>
+              </div>
+        </ng-template>
+        <ng-template #showTime>
+          <p>there will be sorted list</p>
+        </ng-template>
     </div>
 
     <div *ngSwitchCase="'Category'">
-      <p>Category</p>
+      <div>
+        <ion-label>User Categories</ion-label>
+        <div class="fixed" scrolly="true" style="max-height: 20em;">
+          <ion-list>
+            <ion-radio-group>
+              <ion-list-header>
+              </ion-list-header>
+              <ion-item *ngFor="let category of userCategories, let i = index">
+                <ion-label>{{category.name}}</ion-label>
+                <ion-radio slot="start" checked="{{i == 0}}" value="{{category.name}}" (ionSelect)="changeRadioButtonInCategories($event)"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+        </div>
+      </div>
     </div>
 
     <div *ngSwitchDefault>
@@ -73,20 +114,5 @@
       <p class="form-container-flex">No filter Selected!</p>
     </div>
   </div>
-  <!--   <div>
-    <ion-label>User Categories</ion-label>
-    <div class="fixed" scrolly="true" style="max-height: 20em;">
-      <ion-list>
-        <ion-radio-group>
-          <ion-list-header>
-          </ion-list-header>
-          <ion-item *ngFor="let category of userCategories, let i = index">
-            <ion-label>{{category.name}}</ion-label>
-            <ion-radio slot="start" checked="{{i == 0}}" value="{{category.name}}" (ionSelect)="changeRadioButton($event)"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-    </div>
-  </div> -->
 
 </ion-content>
