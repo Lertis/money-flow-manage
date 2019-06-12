@@ -89,12 +89,9 @@
 
     <div *ngSwitchCase="'Category'">
       <div>
-        <ion-label>User Categories</ion-label>
-        <div class="fixed" scrolly="true" style="max-height: 20em;">
+        <div class="fixed" scrolly="true" style="max-height: 15em; margin-top: 1em;">
           <ion-list>
             <ion-radio-group>
-              <ion-list-header>
-              </ion-list-header>
               <ion-item *ngFor="let category of userCategories, let i = index">
                 <ion-label>{{category.name}}</ion-label>
                 <ion-radio slot="start" checked="{{i == 0}}" value="{{category.name}}" (ionSelect)="changeRadioButtonInCategories($event)"></ion-radio>
