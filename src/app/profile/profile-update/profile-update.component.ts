@@ -121,10 +121,49 @@ export class ProfileUpdateComponent implements OnInit {
           })
           .catch(error => console.log(error))
       }).then(function () {
-        console.log("Transaction successfully committed!");
+        console.log("Transaction  (update imageURL) successfully committed!");
       }).catch(function (error) {
         console.log("Transaction failed: ", error);
       });
+  }
+
+
+  updateUserName(user: IUser, userName: string) {
+    var userRef = this.afs.collection('usersMoneyFlow').doc(user.userId).ref;
+    // Firestore transaction to update data
+    // https://firebase.google.com/docs/firestore/manage-data/transactions
+    this.afs.firestore.runTransaction((t) => {
+      return t.get(userRef)
+        .then(success => {
+          let dataSnapshot = success.data() as IUser
+          dataSnapshot.userName = userName;
+          t.update(userRef, dataSnapshot)
+        })
+        .catch(error => console.log(error))
+    }).then(function () {
+      console.log("Transaction (update userName) successfully committed!");
+    }).catch(function (error) {
+      console.log("Transaction failed: ", error);
+    });
+  }
+
+  updateUserEmal(user: IUser, userEmail) {
+    var userRef = this.afs.collection('usersMoneyFlow').doc(user.userId).ref;
+    // Firestore transaction to update data
+    // https://firebase.google.com/docs/firestore/manage-data/transactions
+    this.afs.firestore.runTransaction((t) => {
+      return t.get(userRef)
+        .then(success => {
+          let dataSnapshot = success.data() as IUser
+          dataSnapshot.userEmail = userEmail;
+          t.update(userRef, dataSnapshot)
+        })
+        .catch(error => console.log(error))
+    }).then(function () {
+      console.log("Transaction (update userEmail) successfully committed!");
+    }).catch(function (error) {
+      console.log("Transaction failed: ", error);
+    });
   }
 
 }

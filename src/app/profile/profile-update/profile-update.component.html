@@ -21,7 +21,7 @@
               <input [(ngModel)]="user.userName" matInput placeholder="User Name" type="text" />
             </mat-form-field>
           </div>
-          <button mat-icon-button class="droplet">
+          <button mat-icon-button class="droplet" (click)="updateUserName(user, user.userName)">
             <mat-icon>autorenew</mat-icon>
           </button>
         </div>
@@ -31,7 +31,7 @@
               <input [(ngModel)]="user.userEmail" matInput placeholder="User Name" type="email" />
             </mat-form-field>
           </div>
-          <button mat-icon-button class="droplet">
+          <button mat-icon-button class="droplet" (click)="updateUserEmal(user, user.userEmail)">
             <mat-icon>autorenew</mat-icon>
           </button>
         </div>
@@ -41,9 +41,9 @@
             <ion-card-content *ngIf="photoToFireStore" class="image-profile-update">
               <ion-img src="{{photoToFireStore}}" class="ipu" (click)="viewImage(photoToFireStore, imgTitle, imgDescription)"></ion-img>
             </ion-card-content>
-            <button mat-icon-button (click)="takePhoto()" style="margin: 1em 1em 1em -1.1em;">
-              <mat-icon>camera_alt</mat-icon>
-            </button>
+            <span >
+              <button mat-icon-button (click)="takePhoto()"><mat-icon>camera_alt</mat-icon></button>
+            </span>
           </div>
           <button mat-icon-button class="droplet">
             <mat-icon>autorenew</mat-icon>
