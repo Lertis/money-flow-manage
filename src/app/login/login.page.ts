@@ -5,6 +5,7 @@ import { LoginService } from '../services/auth/login.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { IUser } from '../models/user.interface';
 import { ToastController } from '@ionic/angular';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginPage implements OnInit {
 
   constructor(private router: Router,
     private loginService: LoginService,
+    private afs: AngularFirestore,
     private fb: FormBuilder,
     private toastCntl: ToastController) {
     this.loginForm = new FormGroup({
@@ -44,6 +46,12 @@ export class LoginPage implements OnInit {
         if (this.loginService.isAuthorized()) {
           this.loginService.login(localStorage.getItem('userEmail'), localStorage.getItem('userPassword'))
             .then((successLogin) => {
+              this.afs.collection('usersMoneyFlow', ref => ref.where('userEmail', '==', localStorage.getItem('userEmail'))).valueChanges()
+              .subscribe((users: IUser[]) => {
+                users.forEach((each: IUser) => {
+                  localStorage.setItem('userId', each.userId);
+                })
+              })
               this.router.navigate(['checks', 'new-check'], { replaceUrl: true });
             })
             .catch(async (error) => {

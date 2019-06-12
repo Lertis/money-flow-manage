@@ -109,7 +109,7 @@ export class ProfileUpdateComponent implements OnInit {
   }
 
   updateProfilePhoto(imageURL) {
-      var userRef = this.afs.collection('usersMoneyFlow').doc('c1ea4345-45b4-59e8-b9b7-2c1691644200').ref;
+      var userRef = this.afs.collection('usersMoneyFlow').doc(localStorage.getItem('userId')).ref;
       // Firestore transaction to update data
       // https://firebase.google.com/docs/firestore/manage-data/transactions
       this.afs.firestore.runTransaction((t) => {

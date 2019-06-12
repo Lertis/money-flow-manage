@@ -25,7 +25,7 @@ export class ProfileCardComponent implements OnInit {
     this.afAuth.authState.subscribe((user: firebase.User) => {
       this.userState = user;
     })
-    this.afs.collection('usersMoneyFlow').doc('c1ea4345-45b4-59e8-b9b7-2c1691644200').valueChanges().subscribe((user: IUser) => {
+    this.afs.collection('usersMoneyFlow').doc(localStorage.getItem('userId')).valueChanges().subscribe((user: IUser) => {
       this.userPhotoUrl = user.userPhoto;
     })
   }
@@ -45,6 +45,9 @@ export class ProfileCardComponent implements OnInit {
           text: 'Yes',
           handler: () => {
             user.delete().then(() => {
+              localStorage.removeItem('userPassword');
+              localStorage.removeItem('userEmail');
+              localStorage.removeItem('userId');
               this.router.navigate(['login'], { replaceUrl: true })
             })
               .catch((error) => {
@@ -71,6 +74,9 @@ export class ProfileCardComponent implements OnInit {
           text: 'Yes',
           handler: () => {
             this.afAuth.auth.signOut();
+            localStorage.removeItem('userPassword');
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userId');
             this.router.navigate(['login'], { replaceUrl: true });
           }
         }, {
