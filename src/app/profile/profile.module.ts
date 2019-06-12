@@ -12,6 +12,7 @@ import { ProfileUpdateComponent } from './profile-update/profile-update.componen
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
+import { ProfileCategoriesComponent } from './profile-categories/profile-categories.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
     component: ProfilePage,
     children: [
       { path: 'card', component: ProfileCardComponent },
-      { path: 'update', component: ProfileUpdateComponent}
+      { path: 'update', component: ProfileUpdateComponent }, 
+      { path: 'categories', component: ProfileCategoriesComponent }
     ]
   }
 ];
@@ -32,7 +34,13 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     AngularMaterialModule
   ],
-  declarations: [ProfilePage, ProfileCardComponent, ProfileUpdateComponent, ImageViewerComponent],
+  declarations: [
+    ProfilePage,
+    ProfileCardComponent,
+    ProfileUpdateComponent,
+    ImageViewerComponent,
+    ProfileCategoriesComponent
+  ],
   entryComponents: [ImageViewerComponent],
   providers: [Camera, BackgroundMode]
 })
