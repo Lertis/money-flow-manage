@@ -10,10 +10,47 @@
 </ion-header>
 
 <ion-content>
+
   <div>
     <ng-container *ngIf="loadingUser; then loadCard; else spinner"></ng-container>
     <ng-template #loadCard>
-      <div class="update-container-cards">
+      <div class="container-update-card">
+        <div class="container-update-card-inside">
+          <div>
+            <mat-form-field>
+              <input [(ngModel)]="user.userName" matInput placeholder="User Name" type="text" />
+            </mat-form-field>
+          </div>
+          <button mat-icon-button class="droplet">
+            <mat-icon>autorenew</mat-icon>
+          </button>
+        </div>
+        <div class="container-update-card-inside">
+          <div>
+            <mat-form-field>
+              <input [(ngModel)]="user.userEmail" matInput placeholder="User Name" type="email" />
+            </mat-form-field>
+          </div>
+          <button mat-icon-button class="droplet">
+            <mat-icon>autorenew</mat-icon>
+          </button>
+        </div>
+        <div class="container-update-card-inside">
+          <div>
+            <h2>Change your profile photo</h2>
+            <ion-card-content *ngIf="photoToFireStore" class="image-profile-update">
+              <ion-img src="{{photoToFireStore}}" class="ipu" (click)="viewImage(photoToFireStore, imgTitle, imgDescription)"></ion-img>
+            </ion-card-content>
+            <button mat-icon-button (click)="takePhoto()" style="margin: 1em 1em 1em -1.1em;">
+              <mat-icon>camera_alt</mat-icon>
+            </button>
+          </div>
+          <button mat-icon-button class="droplet">
+            <mat-icon>autorenew</mat-icon>
+          </button>
+        </div>
+      </div>
+      <!--       <div class="update-container-cards">
         <ion-card>
           <ion-card-header>
             <ion-card-title>
@@ -38,63 +75,17 @@
           <ion-card-header>
             <ion-card-title>Change your profile photo</ion-card-title>
             <ion-card-subtitle class="image-profile-update">
-              <!--               <ion-img [src]="user.userPhoto? user.userPhoto : 'https://powerplants.com.au/wp-content/uploads/2017/04/no-profile-pic.jpg' "
-              class="ipu" style="width: 10em; height: 10em;"
-              (click)="viewImage(photoToFireStore, imgTitle, imgDescription)"></ion-img> -->
             </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content *ngIf="photoToFireStore" class="image-profile-update">
             <ion-img src="{{photoToFireStore}}" class="ipu" (click)="viewImage(photoToFireStore, imgTitle, imgDescription)"></ion-img>
           </ion-card-content>
           <button mat-icon-button (click)="takePhoto()" style="margin: 1em 1em 1em -1.1em;">
-              <mat-icon>camera_alt</mat-icon>
+            <mat-icon>camera_alt</mat-icon>
           </button>
         </ion-card>
-        <button mat--button (click)="uploadPhoto()">Change Photo</button>
-
-
-        <!--         <ion-card>
-          <ion-segment [(ngModel)]="selectedSegment">
-            <ion-segment-button checked value="const">
-              <ion-label>Const categories</ion-label>
-              <ion-icon name="contract"></ion-icon>
-            </ion-segment-button>
-            <ion-segment-button checked value="own">
-              <ion-label>Mine categories</ion-label>
-              <ion-icon name="contract"></ion-icon>
-            </ion-segment-button>
-          </ion-segment>
-
-          <ng-container>
-            <div [ngSwitch]="selectedSegment">
-              <div *ngSwitchCase="'const'">
-                <ion-card>
-                  <ion-card-header>
-                    <ion-card-title>
-                        <ion-list *ngFor="let c of constCategoriesNames">
-                            <ion-item>
-                              <ion-label>{{c}}</ion-label>
-                            </ion-item>
-                          </ion-list>
-                    </ion-card-title>
-                  </ion-card-header>
-                </ion-card>
-              </div>
-              <div *ngSwitchCase="'own'">
-                <ion-card>
-                  <ion-card-header>
-                    <ion-card-title>
-                      <mat-form-field>
-                        <input [(ngModel)]="user.userEmail" matInput placeholder="User Name" type="email" />
-                      </mat-form-field>
-                    </ion-card-title>
-                  </ion-card-header>
-                </ion-card>
-              </div>
-            </div>
-          </ng-container>
-        </ion-card> -->
-      </div>
+        <button mat-button (click)="uploadPhoto()" class="profile-manage-buttons">Change Photo</button>
+      </div> -->
 
     </ng-template>
     <ng-template #spinner>
@@ -106,3 +97,7 @@
     </ng-template>
   </div>
 </ion-content>
+
+<!--<ion-img [src]="user.userPhoto? user.userPhoto : 'https://powerplants.com.au/wp-content/uploads/2017/04/no-profile-pic.jpg' "
+  class="ipu" style="width: 10em; height: 10em;"
+  (click)="viewImage(photoToFireStore, imgTitle, imgDescription)"></ion-img> -->

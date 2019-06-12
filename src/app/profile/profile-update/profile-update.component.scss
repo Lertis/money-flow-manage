@@ -11,3 +11,26 @@
     width: 10em;
     height: 10em
 }
+
+.container-update-card {
+    display: flex;
+    justify-content: space-around;
+    margin: 1em;
+    flex-direction: column;
+        div {
+            border: 1px #ccc solid;
+            padding: .8em;
+            margin: .2em;
+            border-radius: .7em;
+        }
+}
+
+.container-update-card-inside {
+    flex-basis: 25%;
+}
+.droplet {
+    transition: all 3s;
+    &:hover {
+      transform: rotate(1080deg);
+    }
+  }
