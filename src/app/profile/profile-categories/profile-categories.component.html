@@ -9,6 +9,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content padding>
+  <div>
+    <h2>Const Categories</h2>
+    <small><strong>INFO! You can CRUD only yours</strong></small>
+    <div *ngIf="allUserCategories.length > 0">
+        <ul @loadCategories *ngFor="let ctg of allUserCategories">
+            <li>{{ctg.name}}</li>
+          </ul>
+    </div>
+  </div>
 </ion-content>
