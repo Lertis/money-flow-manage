@@ -3,6 +3,6 @@ export interface ICheck {
     description?: string;
     category?: string;
     summary: number;
-    addedAt?: Date | number | any;
+    addedAt?: number;
     addedPhoto?: string;
 }

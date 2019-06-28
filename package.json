@@ -41,6 +41,7 @@
     "cordova-plugin-camera": "4.0.3",
     "core-js": "^2.5.4",
     "firebase": "6.1.1",
+    "moment": "2.24.0",
     "ng2-charts": "^1.6.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",

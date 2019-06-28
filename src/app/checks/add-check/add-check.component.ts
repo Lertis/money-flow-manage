@@ -8,6 +8,7 @@ import { FirestoreService } from '../../services/firebase/firestore.service';
 import { ToastController } from '@ionic/angular';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { IUser } from '../../models/user.interface';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-check',
@@ -47,16 +48,16 @@ export class AddCheckComponent implements OnInit {
     if (this.priceForCheck || this.selectedCategory) {
       this.addingNewCheck = true;
       let uuid = UUID.UUID();
-  
+
       let finalCheckToAdd: ICheck = {
-        addedAt: new Date()? new Date() : null,
+        addedAt: moment(new Date()).unix(),
         addedPhoto: null,
         category: this.selectedCategory? this.selectedCategory : null,
         checkId: uuid,
         description: this.descriptionForCheck ? this.descriptionForCheck : null,
         summary: this.priceForCheck ? this.priceForCheck : null
       }
-  
+
       this.firestoreService.addCheckToFirestore(finalCheckToAdd)
         .then(() => {
           timer(1500).subscribe(async () => {
@@ -83,6 +84,6 @@ export class AddCheckComponent implements OnInit {
       });
       toastFillFields.present();
     }
-    
+
   }
 }

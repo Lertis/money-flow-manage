@@ -8,4 +8,4 @@ export interface IUser {
     userPassword: string;
     userPhoto?: any;
     categories?: ICategoriesList;
-} 
+}
