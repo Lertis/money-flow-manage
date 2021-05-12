@@ -35,7 +35,7 @@
     "@ionic/angular": "^4.1.0",
     "angular2-uuid": "1.1.1",
     "angularfire2": "5.2.1",
-    "chart.js": "^2.7.3",
+    "chart.js": "^2.9.4",
     "cordova-android": "8.0.0",
     "cordova-plugin-background-mode": "0.7.2",
     "cordova-plugin-camera": "4.0.3",
